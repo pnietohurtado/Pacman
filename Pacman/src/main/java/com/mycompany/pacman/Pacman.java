@@ -18,10 +18,15 @@ public class Pacman {
         ventana.setResizable(false); 
         ventana.setTitle("Pacman"); 
         
+        GamePanel gp = new GamePanel(); 
+        ventana.add(gp); 
+        
         ventana.pack(); 
         
         ventana.setLocationRelativeTo(null); // La posición de la ventana va a estar en medio de la pantalla 
         ventana.setVisible(true); 
+        
+        gp.startGame();
         
     }
 }
