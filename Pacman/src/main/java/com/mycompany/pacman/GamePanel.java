@@ -4,11 +4,13 @@
  */
 package com.mycompany.pacman;
 
+import Player.Player;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
+import tile.TileManager;
 
 /**
  *
@@ -24,16 +26,29 @@ public class GamePanel extends JPanel implements Runnable{
     public final int maxScreenRow = 12; 
     public final int screenWidth = tileSize * maxScreenCol; 
     public final int screenHeight = tileSize * maxScreenRow; 
+    
+    public final int maxWorldCol = 16; 
+    public final int maxWorldRow = 12; 
+    public final int worldWidth = tileSize * maxWorldCol;
+    public final int worldHeigth = tileSize * maxWorldRow;
 
     // Hilo del juego
     Thread game; 
+    
+    TileManager tile = new TileManager(this); 
+    
+    // Declaramos las teclas para mover el personaje 
+    public KeyHandler kh = new KeyHandler (); 
+    
+    // Declaramos el personaje 
+    public Player player = new Player(this,kh); 
     
     
     public GamePanel(){
         this.setPreferredSize(new Dimension(this.screenWidth, this.screenHeight));
         this.setBackground(Color.black); 
         this.setDoubleBuffered(true); 
-        //this.addKeyListener(keyHandler);
+        this.addKeyListener(kh);
         this.setFocusable(true);
     }
     
@@ -44,7 +59,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
     
     public void update(){
-        
+        player.update(); 
     }
     
     public final int FPS = 60; 
@@ -88,7 +103,9 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g; 
         
+        player.draw(g2);
         
+        g2.dispose();
         
         
         

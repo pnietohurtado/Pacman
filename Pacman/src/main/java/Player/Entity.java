@@ -17,7 +17,7 @@ public class Entity {
     
     public int speed; //  La velocidad a la que va a ir el personaje  
     
-    public BufferedImage f1,f2,l1,l2,r1,r2,d1,d2; 
+    public BufferedImage basico,down,left,right,up; 
     public String direction; 
     
     public int spriteCounter  = 0; 
